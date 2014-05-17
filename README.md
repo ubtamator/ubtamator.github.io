@@ -11,3 +11,5 @@ TODO: doc: change Ubt update repo
 TODO: update document on PDF.js framework
 TODO: move site to qiniuDN
 TODO: document center move to next version
+
+TODO: set rule about env and machine describ format
