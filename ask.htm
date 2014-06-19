@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://getbootstrap.com/examples/cover/ -->
+<html lang="en" class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
+
+    <title>ubt ask page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/cover/cover.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  <style type="text/css"></style><style id="holderjs-style" type="text/css"></style><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style><style type="text/css">.fancybox-margin{margin-right:0px;}</style></head>
+
+  <body data-gclp-initialized="true" data-gistbox-initialized="true">
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">ubt.amat - ask</h3>
+              <ul class="nav masthead-nav">
+                <li ><a href="http://ubtamator.github.io/">Home</a></li>
+                <li class="active"><a href="#">ask</a></li>
+                <li><a href="http://ubtamator.github.io/welcome/index.html">Welcome</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div id='p1' class="inner cover">
+            <h1 class="cover-heading">欢迎来到提问页</h1>
+            <p class="lead">当你遇到的问题比较大的时候，希望您能通过这个页面的指引让大家更加了解你的问题。节省提问跟解决问题的时间。</p>
+            <p class="lead" style="color: green">Page Version 0.01 planning</p>
+            <p class="lead">
+              <a onclick="p1_click()" href="#" class="btn btn-lg btn-default">开始</a>
+            </p>
+          </div>
+
+          <div id='p2' class="inner cover" style="display:none;">
+            <h1 class="cover-heading">先来设定一个题目</h1>
+            <p class="lead">一个简洁明了概括性的题目可以帮助您获得更多的得到帮助的机会哦</p>
+            <p class="lead"><div class="input-group">
+              <span class="input-group-addon">标题：</span>
+              <input type="text" class="form-control" placeholder="在这里输入题目">
+          </div></p>
+            <p class="lead">
+              <a onclick="p2_click()" href="#" class="btn btn-lg btn-default">下一步</a>
+            </p>
+          </div>
+
+        <div id='p3' class="inner cover" style="display:none;">
+        <h1 class="cover-heading">我还没想好怎么做</h1>
+        <p class="lead">希望能讨论一下提供一套标准流程</p>
+        <p class="lead">EMAIL： ubt.amator@gmail.com</p>
+        <p class="lead">weibo：<a href="http://weibo.com/u/2250446510">@看见微软我就跑</a></p>
+        <p class="lead">
+        <a href="#" class="btn btn-lg btn-default">没啦</a>
+        </p>
+        </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p> &copy; ubt.amator 2014 , Powered by bootstrap template.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript">
+      function p1_click()
+      {
+        console.log("codehere");
+        $("#p1").fadeOut();
+        setTimeout("$('#p2').fadeIn()",800);
+      }
+      function p2_click()
+      {
+          console.log("codehere");
+          $("#p2").fadeOut();
+          setTimeout("$('#p3').fadeIn()",800);
+      }
+    </script>
+
+<form id="gclp-frame-form" target="gclp-frame" method="post" style="display: none;"></form></body></html>
