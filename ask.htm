@@ -62,7 +62,7 @@
             <p class="lead">一个简洁明了概括性的题目可以帮助您获得更多的得到帮助的机会哦</p>
             <p class="lead"><div class="input-group">
               <span class="input-group-addon">标题：</span>
-              <input type="text" class="form-control" placeholder="在这里输入题目">
+              <input id="inp_title" type="text" class="form-control" placeholder="在这里输入题目">
           </div></p>
             <p class="lead">
               <a onclick="p2_click()" href="#" class="btn btn-lg btn-default">下一步</a>
@@ -74,11 +74,47 @@
         <p class="lead">要求：至少说明你的操作系统版本。跟问问题相关的都装了什么东西，以及可能需要参考的环境变量。</p>
         <p class="lead"><div class="input-group">
         <span class="input-group-addon">环境：</span>
-        <input  type="text" class="form-control" placeholder="操作系统版本等">
+        <input id="inp_env"  type="text" class="form-control" placeholder="操作系统版本等">
         </div></p>
+        <!--<p class="lead">weibo：<a href="http://weibo.com/u/2250446510">@看见微软我就跑</a></p>-->
+        <p class="lead">
+        <a onclick="p3_click()" href="#" class="btn btn-lg btn-default">下一步</a>
+        </p>
+        </div>
+
+        <div id='p4' class="inner cover"  style="display:none;">
+        <h1 class="cover-heading">说清楚您出现问题的操作目的</h1>
+        <p class="lead">也许是您操作中的方式方法不合适造成的</p>
+        <p class="lead">
+
+        <textarea id="inp_op" class="comments" style="color: #000000; width: 500px; height:expression((this.scrollHeight>150)?'150px':(this.scrollHeight+5)+'px');overflow:auto;"></textarea>
+        </p>
+        <p class="lead">
+            <a onclick="p4_click()" href="#" class="btn btn-lg btn-default">下一步</a>
+        </p>
+        </div>
+
+        <div id='p5' class="inner cover"  style="display:none;">
+        <h1 class="cover-heading">说清楚您的问题</h1>
+        <p class="lead">我们希望看到更多的报错日志，对于我们来说越多<text style="color: red">有用的</text>报错信息越容易帮助您</p>
+        <p class="lead">
+            <textarea id="inp_prob" class="comments" style="color: #000000; width: 500px; height:expression((this.scrollHeight>150)?'150px':(this.scrollHeight+5)+'px');overflow:auto;"></textarea>
+        </p>
         <p class="lead">weibo：<a href="http://weibo.com/u/2250446510">@看见微软我就跑</a></p>
         <p class="lead">
-        <a href="#" class="btn btn-lg btn-default">没啦</a>
+            <a onclick="p5_click()" href="#" class="btn btn-lg btn-default">生成错误报告</a>
+        </p>
+        </div>
+
+        <div id='p6' class="inner cover"  style="display:none;">
+        <h1 class="cover-heading">错误报告生成结果</h1>
+        <p class="lead">请复制错误报告到群里等待解答</p>
+        <p class="lead">
+        <textarea id="inp_finial" class="comments" style="color: #000000; width: 500px; height:expression((this.scrollHeight>150)?'150px':(this.scrollHeight+5)+'px');overflow:auto;"></textarea>
+        </p>
+        <p class="lead">weibo：<a href="http://weibo.com/u/2250446510">@看见微软我就跑</a></p>
+        <p class="lead">
+        <a href="#" class="btn btn-lg btn-default">生成错误报告</a>
         </p>
         </div>
 
@@ -89,7 +125,6 @@
           </div>
 
         </div>
-
       </div>
 
     </div>
@@ -110,6 +145,30 @@
           console.log("codehere");
           $("#p2").fadeOut();
           setTimeout("$('#p3').fadeIn()",800);
+      }
+      function p3_click()
+      {
+          console.log("codehere");
+          $("#p3").fadeOut();
+          setTimeout("$('#p4').fadeIn()",800);
+      }
+      function p4_click()
+      {
+          console.log("codehere");
+          $("#p4").fadeOut();
+          setTimeout("$('#p5').fadeIn()",800);
+      }
+      function p5_click()
+      {
+          console.log("codehere");
+          $("#p5").fadeOut();
+          var report="";
+          report += "问题："+inp_title.value+"\n\n";
+          report += "环境："+inp_env.value+"\n";
+          report += "目的："+inp_op.value+"\n";
+          report += "遇到的问题："+inp_prob.value+"\n";
+          inp_finial.value = report;
+          setTimeout("$('#p6').fadeIn()",800);
       }
     </script>
 
