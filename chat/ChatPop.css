@@ -35,7 +35,7 @@ div.speech.right {
     margin-right: 10px;
     width: 75%;
     float: right;
-    background-color: #bced50;
+    background-color: #eae8e8;
 }
 div.speech.right:before {
     content: '';
@@ -66,7 +66,7 @@ div.speech.left {
     margin-left: 10px;
     width: 75%;
     float: left;
-
+    background-color: #bced50;
     background: -webkit-gradient( linear, 50% 0%, 50% 100%, from(#e4ffa7), color-stop(0.1, #bced50), color-stop(0.4, #aed943), color-stop(0.8, #a7d143), to(#99BF40) );
     /*background: -webkit-gradient( linear, 50% 0%, 50% 100%, from(#ffffff), color-stop(0.1, #eae8e8), color-stop(0.4, #E3E3E3), color-stop(0.8, #DFDFDF), to(#D9D9D9) );*/
 }
