@@ -6,8 +6,8 @@
     display: none; }
 
 .l-demo-container {
-    width: 600px;
-    margin: 40px auto 0px auto; }
+    width: auto;
+    margin: 15px auto 0px auto; }
 
 .l-popout {
     margin: 0;
@@ -86,7 +86,7 @@
     list-style: none;
     margin: 0px;
     padding: 20px;
-    height: 200px;
+    height: 150px;
     overflow: auto; }
 .example-chat ul li {
     margin-bottom: 10px;

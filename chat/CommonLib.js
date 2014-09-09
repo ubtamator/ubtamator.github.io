@@ -27,3 +27,14 @@ function delCookie(name)//删除cookie
     var cval=getCookie(name);
     if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toGMTString();
 }
+
+
+///auto adjest window
+
+window.onresize=function(){autoadjestreader();};
+
+
+function autoadjestreader()
+{
+    byid('example-messages').style.height=window.innerHeight-205+'px';
+}
