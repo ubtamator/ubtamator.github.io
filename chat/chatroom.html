@@ -4,6 +4,7 @@
     <script src="./firebase.js"></script>
     <script src='./jquery.min.js'></script>
     <script src='./CommonLib.js'></script>
+    <script src="firebase-simple-login.js"></script>
     <link rel="stylesheet" type="text/css" href="example.css">
     <link rel="stylesheet" type="text/css" href="ChatPop.css">
 </head>
@@ -40,12 +41,40 @@
         }
         return get_par;
     }
-
+    var G_user_info ="";
     var messagesRef = new Firebase('https://ubtamatchat.firebaseio.com/'+getPar("rn"));
     var messageField = $('#messageInput');
     var nameField = $('#nameInput');
     var messageList = $('#example-messages');
-    nameField.val(getCookie("ChatUA"))
+    nameField.val(getCookie("ChatUA"));
+    var authClient = new FirebaseSimpleLogin(messagesRef, function(error, user) {
+        if (error) {
+            // an error occurred while attempting login
+            console.log(error);
+        } else if (user) {
+            // user authenticated with Firebase
+            console.log("User ID: " + user.uid + ", Provider: " + user.provider);
+            console.log(user.uid);
+            G_user_info = user;
+        } else {
+            // user is logged out
+        }
+    });
+
+    var authRef = new Firebase("https://ubtamatchat.firebaseio.com/.info/authenticated");
+    authRef.on("value", function(snap) {
+        if (snap.val() === true) {
+            console.log(snap);
+            alert("欢迎回来");
+        } else {
+            console.log("not authenticated");
+            authClient.login("github", {
+                rememberMe: true,
+                scope: 'user,gist'
+            });
+
+        }
+    });
 
     // LISTEN FOR KEYPRESS EVENT
     messageField.keypress(function (e) {
