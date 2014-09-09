@@ -1,19 +1,21 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <script src="firebase.js"></script>
-    <script src='jquery.min.js'></script>
+    <script src="./firebase.js"></script>
+    <script src='./jquery.min.js'></script>
+    <script src='./CommonLib.js'></script>
     <link rel="stylesheet" type="text/css" href="example.css">
+    <link rel="stylesheet" type="text/css" href="ChatPop.css">
 </head>
 <body>
 
 <!-- CHAT MARKUP -->
 <div class="example-chat l-demo-container">
-    <header>Chat room beta Version=0.02</header>
+    <header>Chat room beta Version=0.03</header>
 
     <div class='example-chat-toolbar'>
         <label for="nameInput">昵称：</label>
-        <input type='text' id='nameInput' placeholder='UA'>
+        <input type='text' id='nameInput' placeholder='UA(本版本必须输入名字)'>
     </div>
 
     <ul id='example-messages' class="example-chat-messages"></ul>
@@ -26,30 +28,24 @@
 <!-- CHAT JAVACRIPT -->
 <script>
     function getPar(par){
-        //获取当前URL
         var local_url = document.location.href;
-        //获取要取得的get参数位置
         var get = local_url.indexOf(par +"=");
         if(get == -1){
             return false;
         }
-        //截取字符串
         var get_par = local_url.slice(par.length + get + 1);
-        //判断截取后的字符串是否还有其他get参数
         var nextPar = get_par.indexOf("&");
         if(nextPar != -1){
             get_par = get_par.slice(0, nextPar);
         }
         return get_par;
     }
-    // CREATE A REFERENCE TO FIREBASE
 
     var messagesRef = new Firebase('https://ubtamatchat.firebaseio.com/'+getPar("rn"));
-
-    // REGISTER DOM ELEMENTS
     var messageField = $('#messageInput');
     var nameField = $('#nameInput');
     var messageList = $('#example-messages');
+    nameField.val(getCookie("ChatUA"))
 
     // LISTEN FOR KEYPRESS EVENT
     messageField.keypress(function (e) {
@@ -57,6 +53,9 @@
             //FIELD VALUES
             var username = nameField.val();
             var message = messageField.val();
+            if (username == ""){return;}
+            if(message == ""){return;}
+            SetCookie("ChatUA",username);
 
             //SAVE DATA TO FIREBASE AND EMPTY FIELD
             messagesRef.push({name:username, text:message});
@@ -68,14 +67,23 @@
     messagesRef.limit(10).on('child_added', function (snapshot) {
         //GET DATA
         var data = snapshot.val();
-        var username = data.name || "anonymous";
+        var username = data.name || "不改名的小sb";
         var message = data.text;
 
         //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
-        var messageElement = $("<li>");
-        var nameElement = $("<strong class='example-chat-username'></strong>")
-        nameElement.text(username);
-        messageElement.text(message).prepend(nameElement);
+//        var messageElement = $("<li>");
+//        var nameElement = $("<strong class='example-chat-username'></strong>")
+//        nameElement.text(username);
+//        messageElement.text(message).prepend(nameElement);
+        var messageElement="";
+        if(username == getCookie("ChatUA")){
+            messageElement = "<div class='rightd'>"+
+                    "<div class='speech right' >"+message+"</div></div>";
+        }else{
+            messageElement = "<div class='leftd'><div class='nickname'>"+username+"</div>"+
+                    "<div class='speech left' >"+message+"</div></div>";
+        }
+
 
         //ADD MESSAGE
         messageList.append(messageElement)
