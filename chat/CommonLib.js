@@ -36,5 +36,26 @@ window.onresize=function(){autoadjestreader();};
 
 function autoadjestreader()
 {
-    byid('example-messages').style.height=window.innerHeight-205+'px';
+    byid('example-messages').style.height=window.innerHeight-160+'px';
+}
+
+function Reject_injection(input)
+{
+    for (var index = 0 ; index < input.length ; index++)
+    {
+        if(input[index] == '<')
+        {
+            input[index] = "&lt;";
+        }
+        if(input[index] == '>')
+        {
+            input[index] = "&gt;";
+        }
+    }
+    return input;
+}
+
+function Md_render(message)
+{
+
 }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <link rel="stylesheet" type="text/css" href="rainbow/themes/blackboard.css">
+
+</head>
+  <body>
+    <textarea id="text-input" oninput="this.editor.update()"
+              rows="6" cols="60">Type **Markdown** here.</textarea>
+    <div id="preview"></div>
+    <script src="MDR/marked.js"></script>
+    <script src="rainbow/js/rainbow.min.js"></script>
+    <script src="rainbow/js/language/c.js"></script>
+    <script src="rainbow/js/language/coffeescript.js"></script>
+    <script src="rainbow/js/language/smalltalk.js"></script>
+    <script src="rainbow/js/language/shell.js"></script>
+    <script src="rainbow/js/language/scheme.js"></script>
+    <script src="rainbow/js/language/ruby.js"></script>
+    <script src="rainbow/js/language/r.js"></script>
+    <script src="rainbow/js/language/python.js"></script>
+    <script src="rainbow/js/language/php.js"></script>
+    <script src="rainbow/js/language/lua.js"></script>
+    <script src="rainbow/js/language/javascript.js"></script>
+    <script src="rainbow/js/language/java.js"></script>
+    <script src="rainbow/js/language/html.js"></script>
+    <script src="rainbow/js/language/haskell.js"></script>
+    <script src="rainbow/js/language/go.js"></script>
+    <script src="rainbow/js/language/generic.js"></script>
+    <script src="rainbow/js/language/python.js"></script>
+    <script src="rainbow/js/language/d.js"></script>
+    <script src="rainbow/js/language/css.js"></script>
+    <script src="rainbow/js/language/csharp.js"></script>
+
+    <script>
+        marked.setOptions({
+            renderer: new marked.Renderer(),
+            gfm: true,
+            tables: true,
+            breaks: false,
+            pedantic: false,
+            sanitize: true,
+            smartLists: true,
+            smartypants: false
+        });
+      function Editor(input, preview) {
+        this.update = function () {
+            preview.innerHTML = marked(input.value);
+            Rainbow.color();
+            input.replace(/</g,"$lt;");
+            input.replace(/>/g,"$gt;");
+        };
+        input.editor = this;
+        this.update();
+
+      }
+      var $ = function (id) { return document.getElementById(id); };
+      new Editor($("text-input"), $("preview"));
+    </script>
+  </body>
+</html>

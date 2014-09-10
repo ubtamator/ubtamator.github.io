@@ -7,6 +7,12 @@
     <script src="firebase-simple-login.js"></script>
     <link rel="stylesheet" type="text/css" href="example.css">
     <link rel="stylesheet" type="text/css" href="ChatPop.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -22,7 +28,10 @@
     <ul id='example-messages' class="example-chat-messages"></ul>
 
     <footer>
-        <input type='text' id='messageInput'  placeholder='消息键入。。。。。。。。。。。。。'>
+        <div class="input-group">
+            <input type="text" id='messageInput'  placeholder='消息键入。。。。。。。。。。。。。' class="form-control">
+            <span onclick="Action_Send_Message();" class="input-group-addon btn-success">发送</span>
+        </div>
     </footer>
 </div>
 
@@ -78,27 +87,33 @@
 //    });
 
     // LISTEN FOR KEYPRESS EVENT
-    messageField.keypress(function (e) {
-        if (e.keyCode == 13) {
-            //FIELD VALUES
-            var username = nameField.val();
-            var message = messageField.val();
-            if (username == ""){return;}
-            if(message == ""){return;}
-            SetCookie("ChatUA",username);
-            if(message[0] == '$')
-            {
-                var cmd = message.split(' ')
-                if (cmd[0] == "$sr"){
-                    location.href='http://linux52.com/chat/chatroom.html?rn='+cmd[1];
-                }
 
-                return;
+
+    function Action_Send_Message(){
+        //FIELD VALUES
+        var username = nameField.val();
+        var message = messageField.val();
+        if (username == ""){return;}
+        if(message == ""){return;}
+        SetCookie("ChatUA",username);
+        if(message[0] == '$')
+        {
+            var cmd = message.split(' ')
+            if (cmd[0] == "$sr"){
+                location.href='http://linux52.com/chat/chatroom.html?rn='+cmd[1];
             }
 
-            //SAVE DATA TO FIREBASE AND EMPTY FIELD
-            messagesRef.push({name:username, text:message});
-            messageField.val('');
+            return;
+        }
+
+        //SAVE DATA TO FIREBASE AND EMPTY FIELD
+        messagesRef.push({name:username, text:message});
+        messageField.val('');
+    }
+
+    messageField.keypress(function (e) {
+        if (e.keyCode == 13) {
+           Action_Send_Message();
         }
     });
 
@@ -109,11 +124,9 @@
         var username = data.name || "不改名的小sb";
         var message = data.text;
 
-        //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
-//        var messageElement = $("<li>");
-//        var nameElement = $("<strong class='example-chat-username'></strong>")
-//        nameElement.text(username);
-//        messageElement.text(message).prepend(nameElement);
+        message.replace(/</g,"$lt;");
+        message.replace(/>/g,"$gt;");
+
         var messageElement="";
         if(username == getCookie("ChatUA")){
             messageElement = "<div class='rightd'>"+
