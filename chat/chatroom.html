@@ -124,8 +124,8 @@
         var username = data.name || "不改名的小sb";
         var message = data.text;
 
-        message.replace(/</g,"$lt;");
-        message.replace(/>/g,"$gt;");
+        message = message.replace(/</g,"$lt;");
+        message = message.replace(/>/g,"$gt;");
 
         var messageElement="";
         if(username == getCookie("ChatUA")){
