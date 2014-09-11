@@ -174,6 +174,7 @@
         if(username == ""){return;}
         if(message == ""){return;}
         messagesRef.push({name:username, text:message});
+        editor.setValue("");
     }
 
     messageField.keypress(function (e) {
