@@ -55,7 +55,36 @@ function Reject_injection(input)
     return input;
 }
 
-function Md_render(message)
+//for drag
+$(document).ready(function ()
 {
+    var mousex = 0, mousey = 0;
+    var divLeft, divTop;
+    $('.dragAble').mousedown(function(e)
+    {
+        var offset = $(this).offset();
+        divLeft = parseInt(offset.left,10);
+        divTop = parseInt(offset.top,10);
+        mousey = e.pageY;
+        mousex = e.pageX;
+        $('.dragAble').bind('mousemove',dragElement);
+    });
 
-}
+    function dragElement(event)
+    {
+        var left = divLeft + (event.pageX - mousex);
+        var top = divTop + (event.pageY - mousey);
+        $(this).css(
+            {
+                'top' :  top + 'px',
+                'left' : left + 'px',
+                'position' : 'absolute'
+            });
+        return false;
+    }
+    $(document).mouseup(function()
+    {
+        $('.dragAble').unbind('mousemove');
+    });
+
+});

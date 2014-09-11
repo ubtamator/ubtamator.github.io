@@ -106,6 +106,7 @@ div.speech.left:after {
     background: url(icon.jpg) 0px 10px no-repeat;
     background-size:50px 50px;
     padding-left: 40px;
+    min-width: 300px;
 }
 .rightd {
     clear: both;
@@ -113,6 +114,7 @@ div.speech.left:after {
     background: url(icon.jpg) right 10px no-repeat;
     background-size:50px 50px;
     padding-right: 40px;
+    min-width: 300px;
 }
 .clear {
     clear: both;

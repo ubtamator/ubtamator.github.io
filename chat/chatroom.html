@@ -4,36 +4,91 @@
     <script src="./firebase.js"></script>
     <script src='./jquery.min.js'></script>
     <script src='./CommonLib.js'></script>
+    <script src="MDR/marked.js"></script>
+    <script src="rainbow/js/rainbow.min.js"></script>
+    <script src="rainbow/js/language/c.js"></script>
+    <script src="rainbow/js/language/coffeescript.js"></script>
+    <script src="rainbow/js/language/smalltalk.js"></script>
+    <script src="rainbow/js/language/shell.js"></script>
+    <script src="rainbow/js/language/scheme.js"></script>
+    <script src="rainbow/js/language/ruby.js"></script>
+    <script src="rainbow/js/language/r.js"></script>
+    <script src="rainbow/js/language/python.js"></script>
+    <script src="rainbow/js/language/php.js"></script>
+    <script src="rainbow/js/language/lua.js"></script>
+    <script src="rainbow/js/language/javascript.js"></script>
+    <script src="rainbow/js/language/java.js"></script>
+    <script src="rainbow/js/language/html.js"></script>
+    <script src="rainbow/js/language/haskell.js"></script>
+    <script src="rainbow/js/language/go.js"></script>
+    <script src="rainbow/js/language/generic.js"></script>
+    <script src="rainbow/js/language/python.js"></script>
+    <script src="rainbow/js/language/d.js"></script>
+    <script src="rainbow/js/language/css.js"></script>
+    <script src="rainbow/js/language/csharp.js"></script>
     <script src="firebase-simple-login.js"></script>
+    <script src="remodal/jquery.remodal.js"></script>
     <link rel="stylesheet" type="text/css" href="example.css">
     <link rel="stylesheet" type="text/css" href="ChatPop.css">
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <link rel="stylesheet" type="text/css" href="rainbow/themes/blackboard.css">
+    <link rel="stylesheet" type="text/css" href="remodal/jquery.remodal.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        #editor {
+            float: right;
+            width: 600px;
+            height: 300px;
+        }
+        .dragAble {}
+    </style>
 </head>
 <body>
 
+<div class="remodal" data-remodal-id="modal-edit">
+    <h1>聊天内容编辑器</h1>
+    <p>
+        <pre style="text-align: left" id="editor"></pre>
+    </p>
+    <div style="text-align: left" id="preview"></div>
+    <br>
+    <a class="remodal-cancel" href="#">取消</a>
+    <a onclick="Editor_send_Message();" class="remodal-confirm" href="#">发送</a>
+</div>
 <!-- CHAT MARKUP -->
 <div class="example-chat l-demo-container">
     <header>Chat room beta Version=0.03</header>
 
     <div class='example-chat-toolbar'>
         <label for="nameInput">昵称：</label>
-        <input type='text' id='nameInput' placeholder='UA(本版本必须输入名字)'>
+        <input type='text' id='nameInput' placeholder='UA(本版本必须输入名字)'></input>
+        <div style="float: right ;position: absolute;top: 8px; right: 300px" class="btn-group">
+            <button data-remodal-target="modal-edit" type="button" class="btn btn-danger">载入专业编辑器</button>
+            <button type="button" class="btn btn-default">开发中</button>
+            <button type="button" class="btn btn-default">开发中</button>
+            <button type="button" class="btn btn-default">开发中</button>
+            <button type="button" class="btn btn-default">开发中</button>
+
+        </div>
     </div>
 
     <ul id='example-messages' class="example-chat-messages"></ul>
 
-    <footer>
-        <div class="input-group">
+    <footer id="footer_edit">
+        <div id="nor_input" class="input-group">
             <input type="text" id='messageInput'  placeholder='消息键入。。。。。。。。。。。。。' class="form-control">
             <span onclick="Action_Send_Message();" class="input-group-addon btn-success">发送</span>
         </div>
     </footer>
 </div>
+
+
+
 
 <!-- CHAT JAVACRIPT -->
 <script>
@@ -111,6 +166,15 @@
         messageField.val('');
     }
 
+    function Editor_send_Message()
+    {
+        var username=getCookie("ChatUA");
+        var message = editor.getValue();
+        if(username == ""){return;}
+        if(message == ""){return;}
+        messagesRef.push({name:username, text:message});
+    }
+
     messageField.keypress(function (e) {
         if (e.keyCode == 13) {
            Action_Send_Message();
@@ -126,6 +190,8 @@
 
         message = message.replace(/</g,"$lt;");
         message = message.replace(/>/g,"$gt;");
+        message = marked(message);
+
 
         var messageElement="";
         if(username == getCookie("ChatUA")){
@@ -139,12 +205,26 @@
 
         //ADD MESSAGE
         messageList.append(messageElement)
-
+        Rainbow.color();
         //SCROLL TO BOTTOM OF MESSAGE LIST
         messageList[0].scrollTop = messageList[0].scrollHeight;
     });
 
 
 </script>
+
+<!--ace editor section-->
+<script src="http://ace.c9.io/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/markdown");
+    editor.setFontSize(22);
+    editor.getSession().on('change', function(e) { //real time render
+        preview.innerHTML = marked(editor.getValue());
+        Rainbow.color();
+    });
+</script>
+
 </body>
 </html>

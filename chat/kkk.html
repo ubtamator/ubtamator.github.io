@@ -7,7 +7,9 @@
 </head>
   <body>
     <textarea id="text-input" oninput="this.editor.update()"
-              rows="6" cols="60">Type **Markdown** here.</textarea>
+              rows="6" cols="60">Type **Markdown** here.
+    <script>alert("test");</script>
+    </textarea>
     <div id="preview"></div>
     <script src="MDR/marked.js"></script>
     <script src="rainbow/js/rainbow.min.js"></script>
@@ -33,6 +35,7 @@
     <script src="rainbow/js/language/csharp.js"></script>
 
     <script>
+        this.update = function () {
         marked.setOptions({
             renderer: new marked.Renderer(),
             gfm: true,
@@ -43,8 +46,7 @@
             smartLists: true,
             smartypants: false
         });
-      function Editor(input, preview) {
-        this.update = function () {
+            function Editor(input, preview) {
             preview.innerHTML = marked(input.value);
             Rainbow.color();
             input.replace(/</g,"$lt;");
