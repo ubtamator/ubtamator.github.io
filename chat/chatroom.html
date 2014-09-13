@@ -61,6 +61,10 @@
     <a class="remodal-cancel" href="#">取消</a>
     <a onclick="Editor_send_Message();" class="remodal-confirm" href="#">发送</a>
 </div>
+<div  class="remodal" data-remodal-id="Need_user_name">
+    <h1>需要用户名</h1>
+    <a class="remodal-confirm" href="#">知道啦！</a>
+</div>
 <!-- CHAT MARKUP -->
 <div class="example-chat l-demo-container">
     <header>Chat room beta Version 0.04</header>
@@ -150,6 +154,7 @@
         //FIELD VALUES
         var username = nameField.val();
         var message = messageField.val();
+        if(Check_User_input());
         if (username == ""){return;}
         if(message == ""){return;}
         SetCookie("ChatUA",username);
@@ -170,6 +175,7 @@
 
     function Editor_send_Message()
     {
+        if(Check_User_input());
         var username=getCookie("ChatUA");
         var message = editor.getValue();
         if(username == ""){return;}

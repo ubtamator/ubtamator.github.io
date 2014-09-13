@@ -88,3 +88,17 @@ $(document).ready(function ()
     });
 
 });
+
+function Check_User_input()
+{
+    if((getCookie("ChatUA")=="")&&(nameField.val()==""))
+    {
+        var forma = $.remodal.lookup[$('[data-remodal-id=Need_user_name]').data('remodal')];
+        forma.open();
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
