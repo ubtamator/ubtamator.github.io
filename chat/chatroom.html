@@ -50,6 +50,7 @@
     </style>
 </head>
 <body>
+<span id="x" style="display:none"></span>
 
 <div class="remodal" data-remodal-id="modal-edit">
     <h1>聊天内容编辑器</h1>
@@ -197,8 +198,7 @@
         var username = data.name || "不改名的小sb";
         var message = data.text;
 
-        message = message.replace(/</g,"$lt;");
-        message = message.replace(/>/g,"$gt;");
+        message=$("#x").text(message).html();
         message = marked(message);
 
 
