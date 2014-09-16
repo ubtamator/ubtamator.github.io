@@ -1,9 +1,10 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <script src="./firebase.js"></script>
-    <script src='./jquery.min.js'></script>
+    <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
     <script src='./CommonLib.js'></script>
     <script src="MDR/marked.js"></script>
     <script src="rainbow/js/rainbow.min.js"></script>
@@ -34,12 +35,12 @@
     <link rel="stylesheet" type="text/css" href="normalize.css">
     <link rel="stylesheet" type="text/css" href="remodal/jquery.remodal.css">
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="rainbow/themes/blackboard.css" rel="stylesheet" type="text/css" media="screen">
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <style type="text/css" media="screen">
         #editor {
             float: right;
@@ -53,7 +54,11 @@
 <span id="x" style="display:none"></span>
 
 <div class="remodal" data-remodal-id="modal-edit">
-    <h1>聊天内容编辑器</h1>
+    <h1>长聊天内容</h1>
+    <div  class="btn-group">
+        <button  type="button" class="btn btn-danger">工具栏准备中</button>
+        <button  type="button" class="btn btn-default">提问模板</button>
+    </div>
     <p>
         <pre style="text-align: left" id="editor"></pre>
     </p>
@@ -68,7 +73,7 @@
 </div>
 <!-- CHAT MARKUP -->
 <div class="example-chat l-demo-container">
-    <header>Chat room beta Version 0.04</header>
+    <header>Chat room beta Version 0.05</header>
 
     <div class='example-chat-toolbar'>
         <label for="nameInput">昵称：</label>
@@ -80,14 +85,25 @@
             <button onclick="location.href='http://linux52.com/chat/chatroom.html?rn=user'" type="button" class="btn btn-default">应用频道</button>
             <button onclick="location.href='http://linux52.com/chat/chatroom.html?rn=bug'" type="button" class="btn btn-default">Bug汇报</button>
 
-
         </div>
     </div>
 
     <ul id='example-messages' class="example-chat-messages"></ul>
+    <div id="form_face" style="display: none;float: right;position: absolute;bottom: 50px;right: 200px;background-color: #ffffff;width: 640px;height: 480px">
+        <div class="btn-group btn-group-sm">
+            <button  type="button" class="btn btn-default">经典</button>
+            </br>
+            <!--经典-->
+            <div class="face_filter">
+            <ul style=" clear: both;   margin: 5px; height: 460px;" id="normal_face_items">
+            </ul>
+            </div>
+        </div>
+    </div>
 
     <footer id="footer_edit">
         <div id="nor_input" class="input-group">
+            <div style="float: right ;position: absolute;top: 8px; right: 300px;z-index: 7"><img onclick=" face_form_switch()" style="width: 30px" src="http://pub.idqqimg.com/smartqq/css/image/chat_bottombar_icon_face.png"></div>
             <input type="text" id='messageInput'  placeholder='消息键入。。。。。。。。。。。。。' class="form-control">
             <span onclick="Action_Send_Message();" class="input-group-addon btn-success">发送</span>
         </div>
@@ -219,12 +235,26 @@
         //SCROLL TO BOTTOM OF MESSAGE LIST
         messageList[0].scrollTop = messageList[0].scrollHeight;
     });
-
+    function URL_short(longurl)
+    {
+        $.post(
+                "http://dwz.cn/create.php",
+                {url:longurl},
+                function(result){
+                    if(result.status=="0")
+                    {return result.tinyurl}
+                    else
+                    {return "http://dwz.cn/sANdl"}
+                }
+        )
+    }
 
 </script>
 
 <!--ace editor section-->
-<script src="http://ace.c9.io/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://cdn.bootcss.com/ace/1.1.3/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="AfterLoad.js" type="text/javascript" charset="utf-8"></script>
+<script src="face.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");

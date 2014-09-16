@@ -124,3 +124,19 @@ div.speech.left:after {
     margin-bottom: -10px;
     color: #808080
 }
+
+.face_li{
+    float: left;
+    margin: 2px;
+    white-space: nowrap;
+}
+
+.face_filter{
+    width: 640px ;height: 450 ;clear: both;
+}
+
+.face_ul{
+    clear: both;
+    margin: 5px;
+    height: 460px;
+}

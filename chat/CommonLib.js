@@ -102,3 +102,10 @@ function Check_User_input()
         return true;
     }
 }
+
+function input_ask()
+{
+    var md = "#[提问]" +
+        "";
+}
+
