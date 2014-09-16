@@ -78,8 +78,8 @@
     <div class='example-chat-toolbar'>
         <label for="nameInput">昵称：</label>
         <input type='text' id='nameInput' placeholder='UA(本版本必须输入名字)'></input>
-        <div style="float: right ;position: absolute;top: 8px; right: 300px" class="btn-group">
-            <button data-remodal-target="modal-edit" type="button" class="btn btn-danger">载入专业编辑器</button>
+        <div style="float: right ;position: absolute;top: 8px; right: 50px" class="btn-group">
+            <button data-remodal-target="modal-edit" type="button" class="btn btn-danger">专业编辑器</button>
             <button onclick="location.href='http://linux52.com/chat/chatroom.html'" type="button" class="btn btn-default">回到大厅</button>
             <button onclick="location.href='http://linux52.com/chat/chatroom.html?rn=dev'" type="button" class="btn btn-default">开发频道</button>
             <button onclick="location.href='http://linux52.com/chat/chatroom.html?rn=user'" type="button" class="btn btn-default">应用频道</button>
@@ -89,7 +89,7 @@
     </div>
 
     <ul id='example-messages' class="example-chat-messages"></ul>
-    <div id="form_face" style="display: none;float: right;position: absolute;bottom: 50px;right: 200px;background-color: #ffffff;width: 640px;height: 480px">
+    <div id="form_face" style="display: none;float: right;position: absolute;bottom: 50px;right: 60px;background-color: #ffffff;width: 640px;height: 480px">
         <div class="btn-group btn-group-sm">
             <button  type="button" class="btn btn-default">经典</button>
             </br>
@@ -103,7 +103,7 @@
 
     <footer id="footer_edit">
         <div id="nor_input" class="input-group">
-            <div style="float: right ;position: absolute;top: 8px; right: 300px;z-index: 7"><img onclick=" face_form_switch()" style="width: 30px" src="http://pub.idqqimg.com/smartqq/css/image/chat_bottombar_icon_face.png"></div>
+            <div style="float: right ;position: absolute;top: 6px; right: 60px;z-index: 7"><img onclick=" face_form_switch()" style="width: 30px" src="http://pub.idqqimg.com/smartqq/css/image/chat_bottombar_icon_face.png"></div>
             <input type="text" id='messageInput'  placeholder='消息键入。。。。。。。。。。。。。' class="form-control">
             <span onclick="Action_Send_Message();" class="input-group-addon btn-success">发送</span>
         </div>
