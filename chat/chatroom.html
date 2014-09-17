@@ -181,15 +181,15 @@
         if (username == ""){return;}
         if(message == ""){return;}
         SetCookie("ChatUA",username);
-        if(message[0] == '$')
-        {
-            var cmd = message.split(' ')
-            if (cmd[0] == "$sr"){
-                location.href='http://linux52.com/chat/chatroom.html?rn='+cmd[1];
-            }
-
-            return;
-        }
+//        if(message[0] == '$')
+//        {
+//            var cmd = message.split(' ')
+//            if (cmd[0] == "$sr"){
+//                location.href='http://linux52.com/chat/chatroom.html?rn='+cmd[1];
+//            }
+//
+//            return;
+//        }
 
         //SAVE DATA TO FIREBASE AND EMPTY FIELD
         messagesRef.push({name:username, text:message});
