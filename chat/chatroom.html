@@ -30,6 +30,12 @@
     <script src="rainbow/js/language/csharp.js"></script>
     <script src="firebase-simple-login.js"></script>
     <script src="remodal/jquery.remodal.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+
     <link rel="stylesheet" type="text/css" href="example.css">
     <link rel="stylesheet" type="text/css" href="ChatPop.css">
     <link rel="stylesheet" type="text/css" href="normalize.css">
@@ -231,7 +237,8 @@
 
         //ADD MESSAGE
         messageList.append(messageElement)
-        Rainbow.color();
+        Rainbow.color();//render colors
+        MathJax.Hub.Typeset();// render math equations
         //SCROLL TO BOTTOM OF MESSAGE LIST
         messageList[0].scrollTop = messageList[0].scrollHeight;
     });
