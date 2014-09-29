@@ -60,14 +60,14 @@ $(document).ready(function ()
 {
     var mousex = 0, mousey = 0;
     var divLeft, divTop;
-    $('.dragAble').mousedown(function(e)
+    $('.MathJax').mousedown(function(e)
     {
         var offset = $(this).offset();
         divLeft = parseInt(offset.left,10);
         divTop = parseInt(offset.top,10);
         mousey = e.pageY;
         mousex = e.pageX;
-        $('.dragAble').bind('mousemove',dragElement);
+        $('.MathJax').bind('mousemove',dragElement);
     });
 
     function dragElement(event)
@@ -84,7 +84,7 @@ $(document).ready(function ()
     }
     $(document).mouseup(function()
     {
-        $('.dragAble').unbind('mousemove');
+        $('.MathJax').unbind('mousemove');
     });
 
 });
@@ -109,3 +109,22 @@ function input_ask()
         "";
 }
 
+var usermod = new Object();
+usermod.register = function(email,password)
+{
+    auth.createUser(email, password, function(error, user) {
+        if (error === null) {
+            console.log("User created successfully:", user);
+        } else {
+            console.log("Error creating user:", error);
+        }
+    });
+}
+usermod.login = function(email,password)
+{
+    auth.login('password', {
+        email: email,
+        password: password,
+        rememberMe: true
+    });
+}
