@@ -1,8 +1,15 @@
 
+var MaxSlidePage=2; //To control the slid max number
     function resize() {
         TOPHEIGHT = Math.min(1024, window.innerHeight), REALSCROLLSTART = 302 - Math.max(0, (TOPHEIGHT - 814 - 110) / 2), $("#carrousel").css("height", TOPHEIGHT + "px"), $(".top-header")[0].style.backgroundSize = $(".top-header").height() / 969 > $(".top-header").width() / 1999 ? "auto " + ($(".top-header").height() + 100) + "px" : $(".top-header").width() + "px auto", $("#features").css("background-size", window.innerWidth > 2e3 ? "cover" : ""), scroll()
     }
-
+function ajax_test()
+{
+    $.post("http://22500e31b5a12457.sinaapp.com/test/",{suggest:"kkkk"},function(result)
+    {
+        console.log(result);
+    });
+}
     function scroll() {
         var scrollTop = $(document).scrollTop()
         !function () {
@@ -92,9 +99,10 @@
         body.animate({scrollTop: document.body.scrollTop ? 0 : REALSCROLLSTART}, 200)
     })
     var body = $("html, body"), currentPage = 1
+
     btnLeft.click(function () {
         var curPage = $("#carrousel-page" + currentPage), nextPage = $("#carrousel-page" + --currentPage)
-        nextPage.length || (nextPage = $("#carrousel-page" + (currentPage = 5))), document.body.scrollTop ? body.animate({scrollTop: 0}, 200, function () {
+        nextPage.length || (nextPage = $("#carrousel-page" + (currentPage = MaxSlidePage))), document.body.scrollTop ? body.animate({scrollTop: 0}, 200, function () {
             slide(curPage, nextPage)
         }) : slide(curPage, nextPage)
     }), btnRight.click(function () {
