@@ -140,8 +140,8 @@
 	font-family: 'BelloScript';
 	src: url('fonts/bello_script-webfont.eot');
 	src: url('fonts/bello_script-webfont.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/bello_script-webfont.woff') format('woff'),
-		 url('fonts/bello_script-webfont.ttf') format('truetype'),
+		 url('../assets/fonts/bello_script-webfont.woff') format('woff'),
+		 url('../assets/fonts/bello_script-webfont.ttf') format('truetype'),
 		 url('fonts/bello_script-webfont.svg#BelloScript') format('svg');
 	font-weight: normal;
 	font-style: normal;
