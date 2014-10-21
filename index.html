@@ -4,6 +4,12 @@
     <script>
       //      IE专治各种不服,不管你服不服反正我是服了。实在不想做H5兼容了！
       if(!+[1,]){window.location.href='IE.html';}
+
+      if(getCookie('read') == null)
+      {
+          this.location.href="welcome/index.html";
+          SetCookie('read','人艰不拆啊，做着玩儿费劲死了。吐个槽。');
+      }
     </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
